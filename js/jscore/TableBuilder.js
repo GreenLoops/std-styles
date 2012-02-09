@@ -109,7 +109,8 @@ jsc.TableBuilder.prototype.generate = function(data)
 
     var table = self.ce("table");
 
-    self.addClass(table, self.config.className);
+    table.className = self.config.className;
+    //self.addClass(table, self.config.className);
 
     table.appendChild(self.genHeader());
     table.appendChild(self.genBody(data));

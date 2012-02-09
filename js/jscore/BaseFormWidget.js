@@ -50,6 +50,25 @@ jsc.BaseFormWidget.prototype.renderActions = function(actions){
     self.$el.append($ul);
 };
 
+jsc.BaseFormWidget.prototype.buildActionButtons = function(actionsContainer, actions){
+    var self = this;
+
+    _.each(actions, function(action, index){
+        var b = $("#actions-"+action.name);
+        b.prop("disabled", !!action.disabled);
+        b.html(action.text);
+        b.toggleClass("default", !!action.highlight);
+        b.on("click", function(event){
+            if(action.name === "next" || action.name === "add" || action.name === "save"){
+                self.done(action.name);
+            }else if(action.name === "cancel" || action.name === "skip"){
+                self.cancel(action.name);
+            }
+        });
+    });
+};
+
+
 jsc.BaseFormWidget.prototype.enableAction = function(action){
     $("#actions-"+action).removeProp("disabled");
 };
