@@ -2,7 +2,7 @@
 * @constructor
 */
 jsc.BaseFormWidget = function(elementId){
-    jsc.DomUtils.call(this);
+    EventEmitter.apply(this);
 
     var self = this;
 
@@ -12,7 +12,7 @@ jsc.BaseFormWidget = function(elementId){
     self.$el = null;
 };
 
-jsc.compose(jsc.BaseFormWidget, jsc.DomUtils);
+jsc.compose(jsc.BaseFormWidget, EventEmitter);
 
 jsc.BaseFormWidget.prototype.render = function(ctx){
     var self = this;
