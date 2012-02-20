@@ -1,55 +1,140 @@
 buster.testCase("Form Validation", {
 
-    "given a form with two input elements": {
+    setUp: function(){
+        var self = this;
 
-        setUp: function(done){
-            var self = this;
+        self.frm = document.createElement("form");
+        document.body.appendChild(self.frm);
+    },
 
-            self.frm = document.createElement("form");
-            self.frm.innerHTML =
-                '<div id=aControl class=control-group>\
-                    <input id=aField type=text required />\
-                </div>';
+    tearDown: function(){
+        var self = this;
+        document.body.removeChild(self.frm);
+    },
 
-            self.formValidation = new jsc.FormValidation(self.frm);
-            self.formValidation.initValidation();
-            document.body.appendChild(self.frm);
-            done();
-        },
+    "should style the control-group, when validating the form with invalid fields": function(){
+        var self = this;
 
-        tearDown: function(done){
-            var self = this;
-            document.body.removeChild(self.frm);
-            done();
-        },
+        self.frm.innerHTML = 
+        '<div id=aControl class=control-group>\
+            <label for=aField class=control-label>label</label>\
+            <div class=controls>\
+                <input id=aField type=text required />\
+                <span class=help-inline>help</span>\
+            </div>\
+        </div>';
 
-        "should style the control-group, when validating the form with invalid fields": function(done){
-            var self = this;
+        setTimeout(function(){}, 500);
 
-            self.formValidation.validate();
+        var formValidation = new jsc.FormValidation(self.frm);
+        formValidation.initValidation();
 
-            var aControl = document.getElementById("aControl");
+        var rst = formValidation.validate();
 
-            assert(aControl.className.match("error"));
-            assert.equals('<span class="help-inline error">Please fill out this field.</span>', aControl.lastChild.outerHTML);
+        var aControl = document.getElementById("aControl");
+        assert.equals(rst, false);
+        assert(aControl.className.match("error"));
+        assert(aControl.querySelectorAll("span.error").length, 1);
+    },
 
-            done();
-        },
+    "should confirm that all fields are valid": function(){
+        var self = this;
 
-        "should remove the control-group styling, when a field's validity changes to valid": function(done){
-            var self = this;
+        self.frm.innerHTML =
+        '<div id=aControl class=control-group>\
+            <label for=aField class=control-label>label</label>\
+            <div class=controls>\
+                <input id=aField type=text required value="hasvalue" />\
+                <span class=help-inline>help</span>\
+            </div>\
+        </div>';
 
-            self.formValidation.validate();
+        var formValidation = new jsc.FormValidation(self.frm);
+        formValidation.initValidation();
+        var rst = formValidation.validate();
 
-            var aControl = document.getElementById("aControl");
-            var aField = document.getElementById("aField");
+        assert(rst);
+    },
 
-            aField.value = "something";
+    "should support custom validators": function(){
+        var self = this;
+        var validatorSpy = sinon.spy();
 
-            assert(aControl.className.match("error"));
-            assert.equals('<span class="help-inline error">Please fill out this field.</span>', aControl.lastChild.outerHTML);
+        self.frm.innerHTML =
+        '<div id=aControl class=control-group>\
+            <label for=aField class=control-label>label</label>\
+            <div class=controls>\
+                <input id=aField type=name />\
+                <span class=help-inline>help</span>\
+            </div>\
+        </div>';
 
-            done();
-        }
+        var formValidation = new jsc.FormValidation(self.frm);
+        formValidation.addValidator("name", validatorSpy);
+        formValidation.initValidation();
+        formValidation.validate();
+
+        assert(validatorSpy.called);
+    },
+
+    "should clear a fields previous validation error if validity state changes": function(){
+        var self = this;
+
+        self.frm.innerHTML =
+        '<div id=aControl class=control-group>\
+            <label for=aField class=control-label>label</label>\
+            <div class=controls>\
+                <input id=aField type=text required />\
+                <span class=help-inline>help</span>\
+            </div>\
+        </div>';
+
+        var formValidation = new jsc.FormValidation(self.frm);
+        formValidation.initValidation();
+        formValidation.validate();
+
+        var aControl = document.getElementById("aControl");
+        assert(aControl.className.match("error"));
+
+        var aField = aControl.querySelector("#aField");
+
+        aField.value = "foo";
+
+        jsc.trigger(aField, "change");
+
+        assert.equals(aControl.querySelectorAll("span.error").length, 0);
+    },
+
+    "should only show primary validation error": function(){
+        var self = this;
+
+        self.frm.innerHTML = '<div id=aControl class=control-group><input id=aField type=name required /></div>';
+
+        var formValidation = new jsc.FormValidation(self.frm);
+
+        formValidation.addValidator("name", function(fld){
+            return fld.value === "foo";
+        });
+        formValidation.initValidation();
+        formValidation.validate();
+
+        var aControl = document.getElementById("aControl");
+
+        assert.equals(aControl.childNodes.length, 2);
+    },
+
+    "should hide any existing help-inline": function(){
+        var self = this;
+
+        self.frm.innerHTML = '<div id=aControl class=control-group><input id=aField type=text required /><span class=help-inline>whatup</span></div>';
+
+        var formValidation = new jsc.FormValidation(self.frm);
+
+        formValidation.initValidation();
+        formValidation.validate();
+
+        var aControl = document.getElementById("aControl");
+
+        assert.equals(aControl.childNodes[1].style.display, "none");
     }
 });

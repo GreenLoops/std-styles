@@ -32,6 +32,87 @@ jsc.compose = (function(){
     };
 })();
 
+jsc.addClass = function(el, className){
+    if(el.classList){
+        el.classList.add(className);
+    }else{
+		var trimmed = el.className.replace(/^\s+|\s+$/g, "");
+        var classList = trimmed.split(/\s+/);
+        var classNameExists = false;
+        for(var idx = 0; idx < classList.length; idx++){
+            classNameExists = classList[idx] === className;
+        }
+        if(!classNameExists){
+            classList.push(className);
+            el.className = (classList.length === 1) ? className : classList.join(" ");
+        }
+    }
+};
+
+jsc.removeClass = function(el, className){
+    if(el.classList){
+        el.classList.remove(className);
+    }else{
+        var classNames = el.className.split(" ");
+        for(var idx = 0; idx < className.length; idx++){
+            if(classNames[idx] === className) classNames.splice(idx, 1);
+        }
+        el.className = classNames.join(" ");
+    }
+};
+
+jsc.bind = function(el, eventName, fn){
+    if(typeof el === "string"){
+        el = document.getElementById(el);
+    }
+    if(el.addEventListener){
+        el.addEventListener(eventName, fn, false);
+    }else if(el.attachEvent){
+        if("on"+eventName in el){
+            el.attachEvent("on"+eventName, function(e){
+                fn.call(e.srcElement, e);
+            });
+        }else{
+            el["jsc"+eventName] = 0;
+            el.attachEvent("onpropertychange", function(event) {
+                if (event.propertyName == "jsc"+eventName) {
+                    fn.call(el);
+                }
+            });
+        }
+    }
+};
+
+jsc.trigger = function(el, eventName){
+    if(document.createEvent){
+        var evObj = document.createEvent("Events");
+        evObj.initEvent(eventName, true, false);
+        el.dispatchEvent(evObj);
+    }else if(document.createEventObject){
+        var evObj = document.createEventObject();
+        if("on"+eventName in el){
+            el.fireEvent("on"+eventName, evObj);
+        }else{
+            if(el["jsc"+eventName]>=0){
+                // this should fire the onpropertychange event
+                el["jsc"+eventName]++;
+            }
+        }
+    }
+}
+
+jsc.validators = {
+    email: function(field){
+        var re = new RegExp("^[a-z0-9_.%+-]+@[0-9a-z.-]\\.[a-z.]{2,6}$", "i");
+        return re.test(field.value);
+    },
+    date: function(field){
+        var d = new Date(field.value);
+        var ds = d.getMonth()+"/"+d.getDate()+"/"+d.getYear();
+        return field.value === ds;
+    }
+};
+
 /*
 * Object.keys support for IE
 */
@@ -248,4 +329,3 @@ jsc.BasePage.prototype.attempt = function(fn, successPath){
     };
     fn(done);
 };
-
