@@ -2,7 +2,7 @@
 * placeholder for the future router implementation to replace
 * sammy and other routing frameworks
 */
-jsc.Router = function(routes)
+jsc.Router = function(routes, notHash ) /* do not listen to hash */
 {
     var self = this;
 
@@ -18,10 +18,12 @@ jsc.Router = function(routes)
         self.add(path, routes[path]);
     }
 
-    window.onhashchange = function(event)
-    {
-        self.run(window.location.hash);
-    };
+    if(!notHash){
+        window.onhashchange = function(event)
+        {
+            self.run(window.location.hash);
+        };
+    }
 };
 
 jsc.Router.prototype.add = function(path, fn)
