@@ -32,6 +32,25 @@ jsc.compose = (function(){
     };
 })();
 
+jsc.cel = function(tagName, className, attrs, children){
+
+    var el = document.createElement(tagName);
+
+    el.className = className;
+
+    for(var key in attrs){
+        el.setAttribute(key, attrs[key]);
+    }
+
+    if(children){
+        for(var i = 0; i < children.length; i++){
+            el.appendChild(children[i]);
+        }
+    }
+
+    return el;
+};
+
 jsc.addClass = function(el, className){
     if(el.classList){
         el.classList.add(className);

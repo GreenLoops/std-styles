@@ -2,8 +2,9 @@
 * this is typically mixed into another class, so the constructor is
 * never actually call, but is useful for testing 
 */
-jsc.FormValidation = function(frm){
-    this.frm = frm;
+jsc.FormValidation = function(){
+    this.frm = null;
+    this.validators = null;
 };
 
 jsc.FormValidation.prototype.validateField = function(field){
@@ -72,8 +73,10 @@ jsc.FormValidation.prototype.showError = function(el){
     }
 };
 
-jsc.FormValidation.prototype.initValidation = function(){
+jsc.FormValidation.prototype.initValidation = function(frm){
     var self = this, field, fields;
+
+    self.frm = frm;
 
     if(self.validators === undefined){
         self.validators = {};

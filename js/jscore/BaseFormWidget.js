@@ -8,6 +8,7 @@ jsc.BaseFormWidget = function(elementId){
 
     self.elementId = elementId;
 
+    self.frm = null;
     self.el = null;
     self.$el = null;
 };
