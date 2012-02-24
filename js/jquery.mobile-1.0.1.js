@@ -2156,7 +2156,6 @@ $.widget( "mobile.page", $.mobile.widget, {
 
 			//get path from current hash, or from a file path
 			get: function( newPath){
-                debugger;
 				if( newPath === undefined ) {
 					newPath = location.hash;
 				}
