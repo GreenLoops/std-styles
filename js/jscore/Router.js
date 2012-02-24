@@ -2,7 +2,7 @@
 * placeholder for the future router implementation to replace
 * sammy and other routing frameworks
 */
-jsc.Router = function(routes)
+jsc.Router = function(routes, noHashChange)
 {
     var self = this;
 
@@ -18,10 +18,11 @@ jsc.Router = function(routes)
         self.add(path, routes[path]);
     }
 
-    window.onhashchange = function(event)
-    {
-        self.run(window.location.hash);
-    };
+    if(noHashChange === undefined && noHashChange){
+        window.onhashchange = function(event){
+            self.run(window.location.hash);
+        };
+    }
 };
 
 jsc.Router.prototype.add = function(path, fn)
@@ -78,8 +79,7 @@ jsc.Router.prototype.run = function(rawPath)
                 params: params
             };
 
-            route.handler(context);
-            break;
+            return route.handler(context);
         }
     }
 };
@@ -146,7 +146,8 @@ jsc.Router.prototype.disable = function()
     window.onhashchange = null;
 };
 
-jsc.Router.prototype.render = function(view)
+jsc.Router.prototype.process = function(path)
 {
-    view.render();
+    return this.run("#"+path);
 };
+
