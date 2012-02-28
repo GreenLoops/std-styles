@@ -18,7 +18,7 @@ jsc.Router = function(routes, noHashChange)
         self.add(path, routes[path]);
     }
 
-    if(noHashChange === undefined && noHashChange){
+    if(noHashChange === undefined || noHashChange === true){
         window.onhashchange = function(event){
             self.run(window.location.hash);
         };
