@@ -1,10 +1,12 @@
 /**
 * @constructor
 */
-jsc.DialogWidget = function(options){
+jsc.DialogWidget = function(appContext, options){
     EventEmitter.apply(this);
 
     var self = this;
+
+    self.binding = appContext.binding;
 
     self.elementId = options.elementId;
     self.templateString = "default content";
@@ -22,7 +24,7 @@ jsc.DialogWidget = function(options){
 
     self.doneButton = jsc.cel("a", "btn btn-primary", {}, [
         document.createTextNode(options.done || "Done")
-    ])
+    ]);
 
     self.closeButton = jsc.cel("a", "close", {"data-dismiss":"modal"}, [
         document.createTextNode("x")
@@ -34,7 +36,7 @@ jsc.DialogWidget = function(options){
         self.closeButton,
         jsc.cel("h3", null, {}, [
             document.createTextNode(options.title || "Modal")
-        ]),
+        ])
     ]));
 
     self.df.appendChild(self.body);
