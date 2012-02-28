@@ -5,16 +5,16 @@ jsc.DataStore = function(contextId){
     self.contextId = contextId;
 };
 
-jsc.DataStore.prototype.byName = function(queryName, fn){
+jsc.DataStore.prototype.byName = function(domainName, queryName, fn){
     var self = this;
-    $.getJSON("/q/"+self.contextId+"/"+domainName+"/"+queryName+"/all", function(r) {
+    $.getJSON("/q/"+self.contextId+"/"+domainName+"/"+queryName+"/all", function(r, x) {
         fn(r);
     }).error(function(e) {
 
     });
 };
 
-jsc.DataStore.prototype.byNameAndId = function(queryName, queryId, fn){
+jsc.DataStore.prototype.byNameAndId = function(domainName, queryName, queryId, fn){
     var self = this;
     $.getJSON("/q/"+self.contextId+"/"+domainName+"/"+queryName+"/"+queryId, function(r) {
         fn(r);
