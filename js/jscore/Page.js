@@ -11,6 +11,7 @@ jsc.Page = function(appContext, menuId, defaultData){
 
     this.dataStore = appContext.dataStore;
     this.binding = appContext.binding;
+    this.poster = appContext.poster;
 
     // data model associated with this page
     this.defaultData = defaultData;
