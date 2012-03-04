@@ -36,11 +36,16 @@ jsc.BaseFormWidget.prototype.renderActions = function(actions){
         var b = $("<button id=actions-"+action.name+">"+action.text+"</button>");
         b.prop("disabled", !!action.disabled);
         b.toggleClass("default", !!action.highlight);
+        // allow classes to be added on the fly
+        if(action.classes){ b.addClass(action.classes); }
         b.on("click", function(event){
             if(action.name === "next" || action.name === "add" || action.name === "save"){
                 self.done(action.name);
             }else if(action.name === "cancel" || action.name === "skip"){
                 self.cancel(action.name);
+            }else if(self[action.name]){
+                // support buttons that call into anything -- so we can support as many buttons as we want.
+                self[action.name](action.name);
             }
         });
         var l = $("<li></li>");
