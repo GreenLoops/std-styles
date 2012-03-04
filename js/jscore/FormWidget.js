@@ -4,7 +4,7 @@
 jsc.FormWidget = function(appContext, elementId){
     var self = this;
 
-    jsc.DomUtils.call(self);
+    EventEmitter.call(self);
 
     self.binding = appContext.binding;
     self.elementId = elementId;
@@ -13,7 +13,7 @@ jsc.FormWidget = function(appContext, elementId){
     self.$el = null;
 };
 
-jsc.compose(jsc.FormWidget, jsc.DomUtils);
+jsc.compose(jsc.FormWidget, EventEmitter);
 
 jsc.FormWidget.prototype.render = function(ctx){
     var self = this;
@@ -25,6 +25,9 @@ jsc.FormWidget.prototype.render = function(ctx){
     self.$el.block();
     self.init(ctx, function(){
         self.$el.unblock();
+        jsc.bind(self.el.querySelector("form"), "submit", function(e){
+            self.done();
+        });
     });
 };
 
