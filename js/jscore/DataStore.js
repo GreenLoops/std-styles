@@ -1,7 +1,8 @@
-jsc.DataStore = function(contextId){
+jsc.DataStore = function(logger, contextId){
     var self = this;
 
     self.data = {};
+    self.logger = logger;
     self.contextId = contextId;
 };
 
