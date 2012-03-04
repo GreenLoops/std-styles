@@ -103,12 +103,14 @@ jsc.bind = function(el, eventName, fn){
 };
 
 jsc.trigger = function(el, eventName){
+    var evObj;
+
     if(document.createEvent){
-        var evObj = document.createEvent("Events");
+        evObj = document.createEvent("Events");
         evObj.initEvent(eventName, true, false);
         el.dispatchEvent(evObj);
     }else if(document.createEventObject){
-        var evObj = document.createEventObject();
+        evObj = document.createEventObject();
         if("on"+eventName in el){
             el.fireEvent("on"+eventName, evObj);
         }else{
@@ -118,7 +120,7 @@ jsc.trigger = function(el, eventName){
             }
         }
     }
-}
+};
 
 jsc.validators = {
     email: function(field){
