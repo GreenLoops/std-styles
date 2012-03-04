@@ -8,8 +8,9 @@
 <script type="text/javascript" src="/lib/js/moment-1.2.0.js"></script>
 <script type="text/javascript" src="/lib/js/underscore-1.3.1.js"></script>
 <script type="text/javascript" src="/lib/js/jscore.js"></script>
-<script type="text/javascript" src="/lib/js/jscore/FormWidget.js"></script>
 <script type="text/javascript" src="/lib/js/jscore/Actionable.js"></script>
+<script type="text/javascript" src="/lib/js/jscore/FormValidation.js"></script>
+<script type="text/javascript" src="/lib/js/jscore/FormWidget.js"></script>
 
 <section id=container></section>
 
@@ -18,22 +19,36 @@
         jsc.FormWidget.call(this, appContext, options.elementId);
 
         this.mainTemplate = _.template('\
-            <form onsubmit="return false;">\
-                <div class=actions>\
-                    <button class=btn data-action=done>Done</button>\
+            <form class=form-horizontal>\
+                <fieldset>\
+                    <legend>Simple Control</legend>\
+                    <div class=control-group>\
+                        <label class=control-label>Nothing</label>\
+                        <div class=controls>\
+                            <input type=text />\
+                        <div>\
+                    </div>\
+                </fieldset>\
+                <div class="form-actions actions">\
+                    <button type=submit class="btn-primary btn" data-action=done>Done</button>\
+                    <button class=btn data-action=cancel>Cancel</button>\
                 </div>\
             </form>\
         ');
     };
-    jsc.compose(SampleActionable, jsc.FormWidget, jsc.Actionable);
+    jsc.compose(SampleActionable, jsc.FormWidget);
 
-    SampleActionable.prototype.init = function(ctx){
+    SampleActionable.prototype.init = function(ctx, complete){
         this.$el.html(this.mainTemplate({}));
-        this.initActions(this.el);
+        complete();
     };
 
     SampleActionable.prototype.done = function(ev){
         console.log("done", this);
+    };
+
+    SampleActionable.prototype.cancel = function(ev){
+        console.log("cancel", this);
     };
 
     $(document).ready(function(){

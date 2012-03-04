@@ -13,9 +13,10 @@ jsc.FormWidget = function(appContext, elementId){
     self.$el = null;
 };
 
-jsc.compose(jsc.FormWidget, EventEmitter);
+jsc.compose(jsc.FormWidget, EventEmitter, jsc.FormValidation, jsc.Actionable);
 
 jsc.FormWidget.prototype.render = function(ctx){
+    var frm;
     var self = this;
 
     // store element and jquery element for convienance
@@ -24,10 +25,15 @@ jsc.FormWidget.prototype.render = function(ctx){
 
     self.$el.block();
     self.init(ctx, function(){
+        frm = self.el.querySelector("form");
         self.$el.unblock();
-        jsc.bind(self.el.querySelector("form"), "submit", function(e){
+        jsc.bind(frm, "submit", function(ev){
+            ev.preventDefault();
             self.done();
+            return false;
         });
+        self.initActions(frm);
+        self.initValidation(frm);
     });
 };
 
