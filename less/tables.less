@@ -137,3 +137,69 @@ table {
   .span11    { .tableColumns(11); }
   .span12    { .tableColumns(12); }
 }
+
+///////////////////////////////////////////
+// SLL ////////////////////////////////////
+///////////////////////////////////////////
+div.full-table-data {
+    margin: 10px 10px 0px 10px;
+    border: 1px solid @dim0;
+    .rounded;
+}
+
+div.table-wrapper {
+    .rounded;
+    border: 1px solid @dim0;
+}
+
+table.table-data {
+    width: 100%;
+    font-size: 16px;
+
+    th, td {
+        padding: 10px;
+        border-right: 1px dashed @dim0;
+    }
+
+    td.last {
+        border-right: none;
+    }
+
+    thead {
+        border-bottom: 1px solid @dim0;
+
+        th {
+            background-color: @c1;
+        }
+
+        th.first {
+            .rounded-top-left;
+        }
+
+        th.last {
+            border-right: none;
+            .rounded-top-right;
+        }
+    }
+
+    tbody {
+        tr {
+            border-bottom: 1px solid @dim0;
+            background: #fff;
+            cursor: pointer;
+        }
+
+        tr:hover {
+            background-color: @c2;
+        }
+    }
+
+    tfoot {
+        td {
+            padding: 0px;
+            background-color: @c1;
+            .rounded-bottom;
+        }
+   }
+}
+

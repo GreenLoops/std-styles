@@ -1,0 +1,226 @@
+ul.actions li { list-style-type:none; }
+#main-here div.page-content ul.actions { margin-left: 0;}
+
+#main-here
+{
+    h1, header
+    {
+        font-size: 16px;
+        background-color: @c2dim;
+        padding: 8px 20px;
+        margin-bottom: 10px;
+        color: @dim4;
+
+        a       { color: @dim4; font-size: 16px;}
+        a:hover { color: @dim5; }
+    }
+
+    div.page-content
+    {
+        margin: 15px;
+
+        ul.actions
+        {
+            margin-top: 10px;
+            margin-left: 180px;
+        }
+    }
+
+    ul.checkbox-list
+    {
+        overflow: hidden;
+
+        li
+        {
+            float: left;
+            margin-left: 15px;
+
+            label
+            {
+                margin: 0px;
+
+                input[type=checkbox], span
+                {
+                    float: left;
+                    width: auto;
+                }
+
+                span
+                {
+                    margin-top: 0px;
+                    margin-left: 5px;
+                }
+            }
+        }
+
+        li:first-child
+        {
+            margin: 0px;
+        }
+    }
+
+    ul.actions
+    {
+        overflow: hidden;
+        margin-top:20px;
+
+        li
+        {
+            float: left;
+            margin-left: 10px;
+        }
+
+        li:first-child
+        {
+            margin-left: 0px;
+        }
+
+        a, button
+        {
+            .rounded;
+            float:left;
+            margin-left: 5px;
+            font-size: 16px;
+            line-height: 16px;
+            padding: 5px 25px 6px;
+            display: block;
+            background-color: #DDDDDD;
+            border: 1px solid #BBB;
+            padding: 5px;
+            color: black;
+        }
+
+        a.default, button.default
+        {
+            background-color: #E8FCBE;
+        }
+
+        button.default:hover
+        {
+            background-color: #F3FDDE;
+        }
+
+        button.default[disabled], button.default[disabled]:hover
+        {
+            background-color: #F3FDDE;
+            border: 1px solid #EFEFEF;
+        }
+
+        button[disabled], button[disabled]:hover
+        {
+            background-color: #ddd;
+            color: #bfbfbf;
+            border-color: #bfbfbf;
+        }
+
+        li:first-child button
+        {
+            background-color: #E8FCBE;
+        }
+
+        a
+        {
+            text-decoration: none;
+        }
+
+        a:hover, button:hover
+        {
+            background-color: @dim2;
+        }
+    }
+
+    div.page-bar
+    {
+        overflow: hidden;
+        margin: 5px 10px 0px 10px;
+
+        div.filters
+        {
+            border: 1px solid @dim0;
+            float: left;
+            .rounded;
+
+            label
+            {
+                float: left;
+                padding: 13px 6px 13px 10px;
+            }
+
+            label:first-child
+            {
+                border-right: 1px solid @dim0;
+                background-color: @dim0;
+            }
+
+            select
+            {
+                float: left;
+                margin-top: 10px;
+                border: 1px solid @dim2;
+                margin-right: 9px;
+            }
+        }
+
+        ul.actions
+        {
+            float: right;
+            overflow: hidden;
+            margin-top: 8px;
+
+            li
+            {
+                float: left;
+                margin-left: 10px;
+            }
+        }
+    }
+
+    div.tab-buttons
+    {
+        overflow: hidden;
+        margin-top: 10px;
+        border-bottom: 1px solid @dim0;
+
+        a{
+            float: left;
+            padding: 5px 10px;
+            background-color: #fff;
+            border: 1px solid @dim0;
+            border-bottom: none;
+            color: #9A9A9A;
+            text-decoration: none;
+        }
+
+        a:hover
+        {
+            background-color: #F3FDDE;
+            color: black;
+        }
+
+        a.first
+        {
+            .rounded-top-left;
+            margin-left: 30px;
+        }
+
+        a.last
+        {
+            .rounded-top-right;
+            border-left: none;
+        }
+
+        a.active
+        {
+            background-color: @c2dim;
+            color: black;
+        }
+    }
+
+    div.tab-content
+    {
+        overflow: hidden;
+        margin: 5px;
+    }
+}
+
+

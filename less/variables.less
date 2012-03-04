@@ -37,7 +37,7 @@
 @textColor:             @grayDark;
 
 // Buttons
-@primaryButtonBackground:    @linkColor;
+@primaryButtonBackground:    @c2dim;
 
 
 
@@ -88,12 +88,73 @@
 // GRID
 // --------------------------------------------------
 
-// Default 940px grid
+// Default 950px grid
 @gridColumns:             12;
-@gridColumnWidth:         60px;
+@gridColumnWidth:         61px;
 @gridGutterWidth:         20px;
 @gridRowWidth:            (@gridColumns * @gridColumnWidth) + (@gridGutterWidth * (@gridColumns - 1));
 
 // Fluid grid
 @fluidGridColumnWidth:    6.382978723%;
 @fluidGridGutterWidth:    2.127659574%;
+
+// ---------------------------------------------------
+@width: 950px;
+
+// #section colors
+// ----------------------------------------------------
+
+@bright: #fff;
+@dark: #000;
+@yellow : #FDFF8F;
+
+@c0: #f5ffdf;
+@c1: #F3FDDE;
+@c2: #e8fcbe;
+@c3: #effc9a;
+@c4: #aede49;
+@c5: #90c12a;
+
+@c1dim: #ecf3de;
+@c2dim: #E2E8DD;
+@c3dim: #c9cfc4;
+@c4dim: #b3bbad;
+@c5dim: #878F81;
+
+@b1 : #7099a2;
+@b2 : #50808a;
+@b3 : #366670;
+@b4 : #1e4c56;
+@b5 : #4F59C4;
+@b6 : #0318f9;
+
+@errorColor: #E2E8DD;
+@errorFC : black;
+
+@dim0: #EFEFEF;
+@dim1: #DEDEDE;
+@dim2: #CDCDCD;
+@dim3: #9A9A9A;
+@dim4: #787878;
+@dim5: #676767;
+
+@r0: #fdf1f1;
+@r1: #fcd6d6;
+@r2: #fab5b5;
+@r3: #fb8c8c;
+@r4: #fa5e5e;
+@r5: #fb2626;
+
+@error: #FFD9D9;
+@darkError: #FF9595;
+
+// #section fonts
+// ----------------------------------------------------
+@normal-text: 14px;
+.fs-2, .very-small-text{ font-size: @normal-text - 4px; }
+.fs-1, .small-text{ font-size: @normal-text - 2px;  }
+.fs0{ font-size: @normal-text; }
+.fs1, .medium-text { font-size: @normal-text + 1px;  }
+.fs2, .medium-text { font-size: @normal-text + 2px;  }
+.fs3, .large-text, .big-text { font-size: @normal-text + 3px;  }
+.fs4, .very-large-text, .very-big-text { font-size: @normal-text + 6px;  }

@@ -535,3 +535,69 @@
     border-right: @arrowWidth solid @black;
   }
 }
+
+
+//////////////////////////////////////////////////////////
+// SLL
+//////////////////////////////////////////////////////////
+
+.quiet{ color: @dim4; }
+.very-quiet{ color: @dim3; }
+
+.strong{
+    font-weight: bold;
+}
+
+.fs1, .medium-text{
+    font-size: @normal-text + 1px;
+}
+
+.fs2, .medium-text{
+    font-size: @normal-text + 2px;
+}
+
+.fs3, .large-text, .big-text{
+    font-size: @normal-text + 3px;
+}
+
+.fs4, .very-large-text, .very-big-text{
+    font-size: @normal-text + 6px;
+}
+
+.bkc2dim{ background-color: @c2dim }
+.bkdim0{ background-color: @dim0 }
+.bkdim2{ background-color: @dim2 }
+.bkdim3{ background-color: @dim3 }
+.bkdim4{ background-color: @dim4 }
+.bkdim5{ background-color: @dim5 }
+
+.dim3-border
+{
+    border: 1px solid @dim3;
+}
+
+.rounded-corners(@A:0, @B:0, @C:0, @D:0)
+{
+  -moz-border-radius: @A @B @C @D;
+  -khtml-border-radius: @A @B @C @D;
+  -webkit-border-radius: @A @B @C @D;
+  border-radius: @A @B @C @D;
+}
+
+.rounded           { .rounded-corners(5px,5px,5px,5px); }
+.rounded-top       { .rounded-corners(5px,5px,0,0);     }
+.rounded-bottom    { .rounded-corners(0,0,5px,5px);     }
+.rounded-left      { .rounded-corners(5px,0,0,5px);     }
+.rounded-right     { .rounded-corners(0,5px,5px,0);     }
+.rounded-top-right { .rounded-corners(0,5px,0,0);       }
+.rounded-top-left  { .rounded-corners(5px,0,0,0);       }
+
+.bkc2
+{
+    background-color: @c2;
+}
+
+.dim0-border
+{
+    border: 1px solid @dim0;
+}
