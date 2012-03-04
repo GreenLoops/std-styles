@@ -1,10 +1,4 @@
-/*
-* this is typically mixed into another class, so the constructor is
-* never actually call, but is useful for testing 
-*/
 jsc.FormValidation = function(){
-    this.frm = null;
-    this.validators = null;
 };
 
 jsc.FormValidation.prototype.validateField = function(field){
@@ -22,10 +16,12 @@ jsc.FormValidation.prototype.validateField = function(field){
     var validatorName = field.getAttribute("type");
     var validator;
     
-    if(self.validators[validatorName]){
-        validator = self.validators[validatorName];
-    }else if(jsc.validators[validatorName]){
-        validator = jsc.validators[validatorName];
+    if(self.validators){
+        if(self.validators[validatorName]){
+            validator = self.validators[validatorName];
+        }else if(jsc.validators[validatorName]){
+            validator = jsc.validators[validatorName];
+        }
     }
 
     if(result && validator && !validator(field, self.frm)){
@@ -42,27 +38,28 @@ jsc.FormValidation.prototype.clearError = function(el){
     var self = this;
     var controlGroup = el.parentNode.parentNode;
     var controls = el.parentNode;
-    jsc.removeClass(controlGroup, "error");
     var errorMessage = controls.querySelector("span.error");
-    if(errorMessage) controls.removeChild(errorMessage);
     var helpMessage = controls.querySelector("span.help-inline");
+
+    controlGroup.classList.remove("error");
+    if(errorMessage) controls.removeChild(errorMessage);
     if(helpMessage) helpMessage.removeAttribute("style");
 };
 
 jsc.FormValidation.prototype.showError = function(el){
+    var span;
     var self = this;
     var controlGroup = el.parentNode.parentNode;
     var controls = el.parentNode;
     var valid = el.getAttribute("data-valid");
     var validity = el.getAttribute("data-validity");
-
-    jsc.addClass(controlGroup, "error");
-
     var existingHelp = controlGroup.querySelector("span.help-inline");
+
+    controlGroup.classList.add("error");
     if(existingHelp) existingHelp.style.display = "none";
 
     if(!controls.querySelector("span.error")){
-        var span = document.createElement("span");
+        span = document.createElement("span");
         span.className = "help-inline error";
         if(validity === "valueMissing"){
             span.innerHTML = "Please fill out this field.";
@@ -74,51 +71,49 @@ jsc.FormValidation.prototype.showError = function(el){
 };
 
 jsc.FormValidation.prototype.initValidation = function(frm){
-    var self = this, field, fields;
+    var field, fields;
+    var self = this;
 
     self.frm = frm;
 
-    if(self.validators === undefined){
-        self.validators = {};
+    function handleOnChange(e){
+        self.validateField(this, self.frm);
+    }
+
+    function handleOnInput(){
+        self.validateField(this, self.frm);
+    }
+
+    function handleOnInvalid(){
+        self.showError(this);
     }
 
     if(self.frm !== undefined){
-
         fields = self.frm.elements;
-
-        for(var i = 0; i < fields.length; i++){
-
+        fieldsLength = fields.length;
+        for(var i = 0; i < fieldsLength; i++){
             field = fields[i];
-
             if(field.tagName === "INPUT"){
-                jsc.bind(field, "change", function(e){
-                    self.validateField(this, self.frm);
-                });
-
-                jsc.bind(field, "input", function(e){
-                    self.validateField(this, self.frm);
-                });
-
-                jsc.bind(field, "invalid", function(e){
-                    self.showError(this);
-                });
+                jsc.bind(field, "change", handleOnChange);
+                jsc.bind(field, "input", handleOnInput);
+                jsc.bind(field, "invalid", handleOnInvalid);
             }
         }
     }
 };
 
 jsc.FormValidation.prototype.validate = function(){
-    var self = this, idx, result = true, el;
+    var idx, el;
+    var self = this;
+    var result = true;
+    var elementsLength = self.frm.elements.length; 
 
-    if(self.validators){
-        for(idx = 0; idx < self.frm.elements.length; idx++){
-            el = self.frm.elements[idx];
-            if(el.tagName !== null && el.tagName === "INPUT"){
-                if(self.validateField(el) === false) result = false;
-            }
+    for(idx = 0; idx < elementsLength; idx++){
+        el = self.frm.elements[idx];
+        if(el.tagName !== null && el.tagName === "INPUT"){
+            if(self.validateField(el) === false) result = false;
         }
     }
-
     return result;
 };
 

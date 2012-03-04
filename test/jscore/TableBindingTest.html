@@ -8,6 +8,7 @@
 <script type="text/javascript" src="/lib/js/underscore-1.3.1.js"></script>
 <script type="text/javascript" src="/lib/js/jscore.js"></script>
 <script type="text/javascript" src="/lib/js/jscore/TableBinding.js"></script>
+<script type="text/javascript" src="/lib/js/jscore/ListBinding.js"></script>
 
 <style>
     .foo
@@ -19,6 +20,17 @@
     {
         background:#a00;
         color:#ddd;
+    }
+
+    .template
+    {
+        display:none;
+        margin: 50px;
+    }
+
+    ul.listView
+    {
+        list-style: none;
     }
 </style>
 
@@ -44,10 +56,24 @@
     </table>
 </section>
 
+<section id=listView>
+    <ul id=lst class=listView>
+        <li data-styler=foo>
+            <img data-bind="src:url" />
+            <span data-bind="html:name"></span>
+            <span><a data-bind="href:what">Edit</a></span>
+        </li>
+    </ul>
+</section>
+
 <script type="text/javascript">
+
+    var lb;
+
     $(document).ready(function(){
 
         var tbl = document.getElementById("tbl");
+
         var tb = new jsc.TableBinding(tbl, {
             "foo": function(row){
                 if(row.name === "foo1"){
@@ -61,11 +87,39 @@
             }
         });
 
-        tb.bind([
+        var dx = [
             { fooId: "1", name: "foo1", kind: "kind1" },
             { fooId: "2", name: "foo2", kind: "kind2" },
             { fooId: "3", name: "foo3", kind: "kind3" }
-        ]);
+        ];
+
+        tb.bind(dx);
+
+        lb = new jsc.ListBinding("lst", "fooId", {
+            "foo": function(row){
+                if(row.name === "foo"){
+                    return "foo";
+                }
+            }
+        });
+
+        var dy = [
+            { fooId: "1", name: "foo", url: "/images/purple0.png", what:"#/foo" },
+            { fooId: "2", name: "bar", url: "/images/purple1.png", what:"#/boo" }
+        ];
+
+        lb.bind(dy);
+
+        lb.update("1", function(row){
+            row.name = "changed";
+        });
+
+        lb.add({fooId:"3", name: "oof", url: "/images/purple2.png"});
+
+        lb.on("click", function(row){
+            console.log(row);
+        });
+
     });
 </script>
 

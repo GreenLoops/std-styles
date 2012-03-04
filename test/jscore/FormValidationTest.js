@@ -26,8 +26,8 @@ buster.testCase("Form Validation", {
 
         setTimeout(function(){}, 500);
 
-        var formValidation = new jsc.FormValidation(self.frm);
-        formValidation.initValidation();
+        var formValidation = new jsc.FormValidation();
+        formValidation.initValidation(self.frm);
 
         var rst = formValidation.validate();
 
@@ -49,8 +49,8 @@ buster.testCase("Form Validation", {
             </div>\
         </div>';
 
-        var formValidation = new jsc.FormValidation(self.frm);
-        formValidation.initValidation();
+        var formValidation = new jsc.FormValidation();
+        formValidation.initValidation(self.frm);
         var rst = formValidation.validate();
 
         assert(rst);
@@ -69,9 +69,9 @@ buster.testCase("Form Validation", {
             </div>\
         </div>';
 
-        var formValidation = new jsc.FormValidation(self.frm);
+        var formValidation = new jsc.FormValidation();
         formValidation.addValidator("name", validatorSpy);
-        formValidation.initValidation();
+        formValidation.initValidation(self.frm);
         formValidation.validate();
 
         assert(validatorSpy.called);
@@ -89,8 +89,8 @@ buster.testCase("Form Validation", {
             </div>\
         </div>';
 
-        var formValidation = new jsc.FormValidation(self.frm);
-        formValidation.initValidation();
+        var formValidation = new jsc.FormValidation();
+        formValidation.initValidation(self.frm);
         formValidation.validate();
 
         var aControl = document.getElementById("aControl");
@@ -108,33 +108,38 @@ buster.testCase("Form Validation", {
     "should only show primary validation error": function(){
         var self = this;
 
-        self.frm.innerHTML = '<div id=aControl class=control-group><input id=aField type=name required /></div>';
+        self.frm.innerHTML =
+        '<div id=aControl class=control-group>\
+            <input id=aField type=name required />\
+        </div>';
 
-        var formValidation = new jsc.FormValidation(self.frm);
+        var formValidation = new jsc.FormValidation();
 
         formValidation.addValidator("name", function(fld){
             return fld.value === "foo";
         });
-        formValidation.initValidation();
+        formValidation.initValidation(self.frm);
         formValidation.validate();
 
-        var aControl = document.getElementById("aControl");
-
-        assert.equals(aControl.childNodes.length, 2);
+        var errorSpans = self.frm.querySelectorAll("span");
+        assert(errorSpans.length, 1);
     },
 
     "should hide any existing help-inline": function(){
         var self = this;
 
-        self.frm.innerHTML = '<div id=aControl class=control-group><input id=aField type=text required /><span class=help-inline>whatup</span></div>';
+        self.frm.innerHTML =
+        '<div id=aControl class=control-group>\
+            <input id=aField type=text required />\
+            <span class=help-inline>whatup</span>\
+        </div>';
 
-        var formValidation = new jsc.FormValidation(self.frm);
+        var formValidation = new jsc.FormValidation();
 
-        formValidation.initValidation();
+        formValidation.initValidation(self.frm);
         formValidation.validate();
 
-        var aControl = document.getElementById("aControl");
-
-        assert.equals(aControl.childNodes[1].style.display, "none");
+        var helpSpan = self.frm.querySelector("span");
+        assert(helpSpan.style.display === "none");
     }
 });
