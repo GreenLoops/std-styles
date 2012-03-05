@@ -252,9 +252,8 @@ textarea[readonly] {
   background-color: #f5f5f5;
   border-color: #ddd;
   cursor: not-allowed;
+  color: #222;
 }
-
-
 
 
 // FORM FIELD FEEDBACK STATES
@@ -421,7 +420,7 @@ select:focus:required:invalid {
   }
   input:first-child {
     // In IE7, having a hasLayout container (from clearfix's zoom:1) can make the first input
-    // inherit the sum of its ancestors' margins.
+    // inherit the sum of its ancestors margins.
     *margin-left: -160px;
 
     &+.add-on {
@@ -513,3 +512,59 @@ select:focus:required:invalid {
     padding-left: 160px;
   }
 }
+
+
+form .control-group label,
+form .control-group .description{ color: @dim3; } 
+
+form .control-group:hover label { color: black }
+form .control-group:hover .description{ color: @dim5; } 
+
+  div.radiobuttons
+    {
+        label
+        {
+            color: black;
+            cursor: pointer;
+            border: 1px solid @dim0;
+            padding: 10px;
+            background: no-repeat 50% 6px;
+            width: auto;
+            opacity:0.5;
+            display:inline-block;
+
+            input[type=radio]
+            {
+                /*display: none;*/
+            }
+
+            span
+            {
+                width: auto;
+                margin-top: 29px;
+                font-size: 13px;
+            }
+        }
+
+        label:hover
+        {
+            background-color: #F3FDDE;
+        }
+
+        label:first-child
+        {
+            .rounded-left;
+        }
+
+        label:last-child
+        {
+            .rounded-right;
+            border-left: none;
+        }
+
+        label.active
+        {
+            background-color: #E2E8DD;
+            opacity:1;
+        }
+    }
