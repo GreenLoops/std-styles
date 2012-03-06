@@ -502,6 +502,7 @@ select:focus:required:invalid {
     width: 140px;
     padding-top: 5px;
     text-align: right;
+    padding-right:10px;
   }
   // Move over all input controls and content
   .controls {
@@ -514,8 +515,10 @@ select:focus:required:invalid {
 }
 
 
-form .control-group label,
-form .control-group .description{ color: @dim3; } 
+form .control-group label { color: @dim5; margin-bottom: 0; margin-left: 5px; }
+
+form .control-group .description{ color: @dim3; .fs-1; }
+form .control-group div.description{ margin-top:-10px; margin-left:5px; }
 
 form .control-group:hover label { color: black }
 form .control-group:hover .description{ color: @dim5; } 
@@ -526,7 +529,7 @@ form .control-group:hover .description{ color: @dim5; }
         {
             color: black;
             cursor: pointer;
-            border: 1px solid @dim0;
+            border: 1px solid @dim2;
             padding: 10px;
             background: no-repeat 50% 6px;
             width: auto;

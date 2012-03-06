@@ -130,7 +130,14 @@
 
 // Warning appears are orange
 .btn-warning {
-  /*.buttonBackground(lighten(@orange, 15%), @orange);*/
+  /*.buttonBackground(lighten(@orange, 30%), @orange);*/
+  background-color: #FAC05C;
+  text-shadow: none;
+  color: black;
+}
+
+.btn-warning:hover{
+  background-color: #FCAF28;
 }
 // Danger and error appear as red
 .btn-danger {
@@ -142,7 +149,14 @@
 }
 // Info appears as a neutral blue
 .btn-info {
-  .buttonBackground(#5bc0de, #2f96b4);
+  /*.buttonBackground(#5bc0de, #2f96b4);*/
+  background-color: @c3dim;
+  text-shadow: none;
+  color: black;  
+}
+
+.btn-info:hover{
+  background-color: #0CABFA;
 }
 
 

@@ -165,15 +165,16 @@ jsc.FormBinding.prototype.populate = function(form, model)
     }
 
     flattenModel(model, []);
-
-    for(var x = 0; x < elements.length; x++)
-    {
-        var node = elements[x];
-        if(node.name){
-            var nodeNameParts = node.name.split("|");
-            var name = nodeNameParts[0];
-            var filter = nodeNameParts[1];
-            this.populateNode(node, flattened[name], filter);
+    if(elements){
+        for(var x = 0; x < elements.length; x++)
+        {
+            var node = elements[x];
+            if(node.name){
+                var nodeNameParts = node.name.split("|");
+                var name = nodeNameParts[0];
+                var filter = nodeNameParts[1];
+                this.populateNode(node, flattened[name], filter);
+            }
         }
     }
 };
