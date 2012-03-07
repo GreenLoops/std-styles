@@ -6,9 +6,8 @@
 // --------------------------------------------------
 
 // Core
-.btn {
-  display: inline-block;
-  padding: 4px 10px 4px;
+.btn-no-padding {
+  display: inline-block;  
   line-height: @baseLineHeight;
   color: @dim5;
   text-align: center;
@@ -21,6 +20,10 @@
   .ie7-restore-left-whitespace();
 }
 
+.btn{
+  padding: 4px 10px 4px;
+  .btn-no-padding;
+}
 // Hover state
 .btn:hover {
   color: @grayDark;
