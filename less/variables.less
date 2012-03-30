@@ -1,11 +1,11 @@
-// Variables.less
-// Variables to customize the look and feel of Bootstrap
-// -----------------------------------------------------
+/*// Variables.less*/
+/*// Variables to customize the look and feel of Bootstrap*/
+/*// -----------------------------------------------------*/
 
 
 
-// GLOBAL VALUES
-// --------------------------------------------------
+/*// GLOBAL VALUES*/
+/*// --------------------------------------------------*/
 
 // Links
 @linkColor:             #08c;
@@ -20,7 +20,7 @@
 @grayLighter:           #eee;
 @white:                 #fff;
 
-// Accent colors
+/*// Accent colors*/
 @blue:                  #049cdb;
 @blueDark:              #0064cd;
 @green:                 #46a546;
@@ -30,23 +30,47 @@
 @pink:                  #c3325f;
 @purple:                #7a43b6;
 
-// Typography
+@c1dim:     black;
+@c2dim:     black;
+@c3dim:     black;
+@c4dim:     black;
+@c5dim:     black;
+
+@c1dim:     black;
+@c2dim:     black;
+@c3dim:     black;
+@c4dim:     black;
+@c5dim:     black;
+
+@dim0:     #EFEFEF;
+@dim1:     #DDD;
+@dim2:     #AAA;
+@dim3:     #999;
+@dim4:     #666;
+@dim5:     #333;
+
+
+
+/*// Typography*/
 @baseFontSize:          13px;
 @baseFontFamily:        "Helvetica Neue", Helvetica, Arial, sans-serif;
 @baseLineHeight:        18px;
 @textColor:             @grayDark;
+.fs1: @baseFontSize + 2px;
+.fs2: @baseFontSize + 4px;
+.fs3: @baseFontSize + 6px;
 
-// Buttons
+/*// Buttons*/
 @primaryButtonBackground:    @linkColor;
 
 
 
-// COMPONENT VARIABLES
-// --------------------------------------------------
-
-// Z-index master list
-// Used for a bird's eye view of components dependent on the z-axis
-// Try to avoid customizing these :)
+/*// COMPONENT VARIABLES*/
+/*// --------------------------------------------------*/
+/**/
+/*// Z-index master list*/
+/*// Used for a bird's eye view of components dependent on the z-axis*/
+/*// Try to avoid customizing these :)*/
 @zindexDropdown:        1000;
 @zindexPopover:         1010;
 @zindexTooltip:         1020;
@@ -54,10 +78,10 @@
 @zindexModalBackdrop:   1040;
 @zindexModal:           1050;
 
-// Input placeholder text color
+/*// Input placeholder text color*/
 @placeholderText:       @grayLight;
 
-// Navbar
+/*// Navbar*/
 @navbarHeight:                    40px;
 @navbarBackground:                @grayDarker;
 @navbarBackgroundHighlight:       @grayDark;
@@ -66,7 +90,7 @@
 @navbarLinkColor:                 @grayLight;
 @navbarLinkColorHover:            @white;
 
-// Form states and alerts
+/*// Form states and alerts*/
 @warningText:             #c09853;
 @warningBackground:       #fcf8e3;
 @warningBorder:           darken(spin(@warningBackground, -10), 3%);
@@ -85,15 +109,15 @@
 
 
 
-// GRID
-// --------------------------------------------------
-
-// Default 940px grid
+/*// GRID*/
+/*// --------------------------------------------------*/
+/**/
+/*// Default 940px grid*/
 @gridColumns:             12;
 @gridColumnWidth:         60px;
 @gridGutterWidth:         20px;
 @gridRowWidth:            (@gridColumns * @gridColumnWidth) + (@gridGutterWidth * (@gridColumns - 1));
 
-// Fluid grid
+/*// Fluid grid*/
 @fluidGridColumnWidth:    6.382978723%;
 @fluidGridGutterWidth:    2.127659574%;
