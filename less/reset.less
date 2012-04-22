@@ -43,10 +43,11 @@ html {
   font-size: 100%;
   -webkit-text-size-adjust: 100%;
       -ms-text-size-adjust: 100%;
+      overflow-y: scroll;
 }
 // Focus states
 a:focus {
-  .tab-focus();
+  .tab-focus();  
 }
 // Hover & Active
 a:hover,
@@ -54,6 +55,12 @@ a:active {
   outline: 0;
 }
 
+a{
+  i{ opacity: 0.6;}
+}
+a:hover{
+  i{opacity: 1;}
+}
 // Prevents sub and sup affecting line-height in all browsers
 // -------------------------
 

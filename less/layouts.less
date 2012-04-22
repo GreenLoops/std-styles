@@ -21,7 +21,7 @@
 //////////////////////////////////////////
 body
 {
-    background-color: @c2dim !important;
+    background-color: @c1 !important;
     font-size: 13px;
     color: #222;
     background: #fff;
@@ -131,6 +131,7 @@ body
                 margin-left:-4px;
                 padding: 8px 5px 8px 5px;
                 background-color: @bright;
+                box-shadow:0px -1px 25px #EFEFEF;
                 .dim0-border;
                 a
                 {
@@ -143,6 +144,7 @@ body
             {
                 background-color: @c1;
                 border: 1px solid @dim3;
+                box-shadow:0px -1px 25px @c1;
             }
             li.first
             {
@@ -154,6 +156,7 @@ body
             }
             li.active
             {
+                box-shadow:0px -0px 15px @c2;
                 padding-top: 13px;
                 padding-bottom: 10px;
                 margin-left: -3px;
@@ -161,21 +164,21 @@ body
                 border-bottom-style: none;
                 border-bottom-color: inherit;
                 border-bottom-width: medium;
-                .bkc2dim;
+                .bkc1;
                 .dim3-border;
                 .rounded-top;
             }
             li.actions
             {
-                .bkc2;
-                margin-left: 25px;
+                .bkc0;
+                margin-left: 200px;
                 padding-left: 15px;
                 padding-right: 15px;  
                 .rounded-top;
             }
             li.actions:hover
             {
-                background-color: @c1;
+                background-color: @c0;
             }
         }
     }

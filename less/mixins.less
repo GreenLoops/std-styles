@@ -541,6 +541,8 @@
 // SLL
 //////////////////////////////////////////////////////////
 
+.fcblack{ color: @black; }
+
 .quiet{ color: @dim4; }
 .very-quiet{ color: @dim3; }
 
@@ -564,18 +566,6 @@
     font-size: @normal-text + 6px;
 }
 
-.bkc2dim{ background-color: @c2dim }
-.bkdim0{ background-color: @dim0 }
-.bkdim2{ background-color: @dim2 }
-.bkdim3{ background-color: @dim3 }
-.bkdim4{ background-color: @dim4 }
-.bkdim5{ background-color: @dim5 }
-
-.dim3-border
-{
-    border: 1px solid @dim3;
-}
-
 .rounded-corners(@A:0, @B:0, @C:0, @D:0)
 {
   -moz-border-radius: @A @B @C @D;
@@ -584,20 +574,57 @@
   border-radius: @A @B @C @D;
 }
 
-.rounded           { .rounded-corners(5px,5px,5px,5px); }
-.rounded-top       { .rounded-corners(5px,5px,0,0);     }
-.rounded-bottom    { .rounded-corners(0,0,5px,5px);     }
-.rounded-left      { .rounded-corners(5px,0,0,5px);     }
-.rounded-right     { .rounded-corners(0,5px,5px,0);     }
-.rounded-top-right { .rounded-corners(0,5px,0,0);       }
-.rounded-top-left  { .rounded-corners(5px,0,0,0);       }
+.rounded              { .rounded-corners(5px,5px,5px,5px); }
+.rounded-top          { .rounded-corners(5px,5px,0,0);     }
+.rounded-bottom       { .rounded-corners(0,0,5px,5px);     }
+.rounded-bottom-right { .rounded-corners(0,0,5px,0);       }
+.rounded-bottom-left  { .rounded-corners(0,0,0,5px);       }
+.rounded-left         { .rounded-corners(5px,0,0,5px);     }
+.rounded-right        { .rounded-corners(0,5px,5px,0);     }
+.rounded-top-right    { .rounded-corners(0,5px,0,0);       }
+.rounded-top-left     { .rounded-corners(5px,0,0,0);       }
 
-.bkc2
-{
-    background-color: @c2;
+.border-top-only{
+  border-bottom:none;
+  border-left:none;
+  border-right:none;
 }
+.bkc0{ background-color: @c0; }
+.bkc1{ background-color: @c1; }
+.bkc2{ background-color: @c2; }
+.bkc3{ background-color: @c3; }
+.bkc4{ background-color: @c4; }
+.bkc5{ background-color: @c5; }
 
-.dim0-border
-{
-    border: 1px solid @dim0;
-}
+.bkcs1{ background-color: @cs1; }
+.bkcs2{ background-color: @cs2; }
+.bkcs3{ background-color: @cs3; }
+.bkcs4{ background-color: @cs4; }
+.bkcs5{ background-color: @cs5; }
+
+.bkct1{ background-color: @ct1; }
+.bkct2{ background-color: @ct2; }
+.bkct3{ background-color: @ct3; }
+.bkct4{ background-color: @ct4; }
+.bkct5{ background-color: @ct5; }
+
+.bkr0{ background-color: @r0; }
+.bkr1{ background-color: @r1; }
+.bkr2{ background-color: @r2; }
+.bkr3{ background-color: @r3; }
+.bkr4{ background-color: @r4; }
+.bkr5{ background-color: @r5; }
+
+.bkdim1{ background-color: @dim1; }
+.bkdim2{ background-color: @dim2; }
+.bkdim3{ background-color: @dim3; }
+.bkdim4{ background-color: @dim4; }
+.bkdim5{ background-color: @dim5; }
+
+.white-border{ border: 1px solid @white; }
+.dim0-border{ border: 1px solid @dim0; }
+.dim1-border{ border: 1px solid @dim1; }
+.dim2-border{ border: 1px solid @dim2; }
+.dim3-border{ border: 1px solid @dim3; }
+.dim4-border{ border: 1px solid @dim4; }
+.dim5-border{ border: 1px solid @dim5; }

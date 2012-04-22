@@ -5,25 +5,14 @@ ul.actions li { list-style-type:none; }
 {
     h1, header
     {
-        font-size: 16px;
-        background-color: @c2dim;
+        font-size: .fs1;
+        background-color: @c0;
         padding: 8px 20px;
         margin-bottom: 10px;
-        color: @dim4;
+        color: @dim5;
 
         a       { color: @dim4; font-size: 16px;}
         a:hover { color: @dim5; }
-    }
-
-    div.page-content
-    {
-        margin: 15px;
-
-        ul.actions
-        {
-            margin-top: 10px;
-            margin-left: 180px;
-        }
     }
 
     ul.checkbox-list
@@ -92,25 +81,25 @@ ul.actions li { list-style-type:none; }
 
         a.default, button.default
         {
-            background-color: #E8FCBE;
+            background-color: @black;
         }
 
         button.default:hover
         {
-            background-color: #F3FDDE;
+            background-color: @dim5;
         }
 
         button.default[disabled], button.default[disabled]:hover
         {
-            background-color: #F3FDDE;
-            border: 1px solid #EFEFEF;
+            background-color: @c1;
+            border: 1px solid @dim1;
         }
 
         button[disabled], button[disabled]:hover
         {
-            background-color: #ddd;
-            color: #bfbfbf;
-            border-color: #bfbfbf;
+            background-color: @dim1;
+            color: @dim2;
+            border-color: @dim3;
         }
 
         li:first-child button
@@ -211,7 +200,7 @@ ul.actions li { list-style-type:none; }
 
         a.active
         {
-            background-color: @c2dim;
+            background-color: @c2;
             color: black;
         }
     }
